@@ -1,0 +1,10 @@
+extends ../layouts/module
+
+block vars
+  - var moduleSlug = 'product-flag'
+  - var moduleName = 'Product Flag'
+  - var moduleType = 'Desktop / Mobile'
+
+block content
+  .product-flag.module(data-ng-app="productFlag" data-ng-controller="productFlagCtrl as pf")
+        
