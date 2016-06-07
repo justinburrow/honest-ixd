@@ -1,0 +1,32 @@
+.select-option {
+  .icon {
+    width: 100%;
+    border: 1px solid $teal;
+    margin-top: 20px;
+    background: white;
+    transition: all 0.4s cubic-bezier(.12,.82,.95,1);
+    position: relative;
+    cursor: pointer;
+    &:after {
+      padding-bottom: 100%;
+      content: '';
+      display: block;
+    }
+    &.selected {
+      background: $teal;
+      svg {
+        fill: white;
+      }
+    }
+    svg {
+      fill: $black;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}

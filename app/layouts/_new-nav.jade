@@ -1,0 +1,799 @@
+app-navigation
+      section
+        header#header-nav.navbar-top.fixed(data-ng-show='$ctrl.header && $ctrl.showNav && $ctrl.isInitialRouteLoaded', data-ng-class='{ fixed: $ctrl.isNavFixed }')
+          .navbar-top.navigation-container(data-ng-switch='$ctrl.header', data-ng-class='{ sticky: $ctrl.isSticky }')
+            navigation-default(data-active-category='$ctrl.activeCategory')
+              .navbar-static-top.background-teal.cart-navbar.visible-default-nav.honest-cart-navigation
+                .container
+                  div
+                    a(href='/')
+                      img.navbar-honest-logo(alt='Header_logo', nopin='nopin', src='/h2_assets/images/header_logo.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+                  ul.main-navigation.test-navbar-links
+                    li.cart-navbar-links.background-orange.pull-left.margin-right-lg.nav-trial-link.upcase.hidden-lg.ng-scope
+                      a.white.pad-left-lg.pad-right-lg.block.test-free-trial-link.ng-hide(data-ng-show='$ctrl.canPurchaseFreeTrial', href='/account/select-bundle') Free Trial
+                    li.cart-navbar-links.pull-left.upcase.trial-tab.visible-lg.ng-scope
+                      a.test-free-trial.ng-hide(data-ng-show='$ctrl.canPurchaseFreeTrial', href='/account/select-bundle', data-ng-click="$ctrl.addMenuClick('freetrial')")
+                        img(data-ng-src='/h2_assets/images/free_trial_tab.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png', src='/h2_assets/images/free_trial_tab.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+                    li.cart-navbar-links.shopping-cart-dropdown-modern.dropdown-hoverable.pull-right
+                      section
+                        ul
+                          li.navbar-text.navbar-text-tall.dropdown.margin-left-none
+                            a(href='/cart')
+                              .cart-dropdown-link.navbar-cart-text-tall.gray
+                                svg.icon.icon-honest_cart(viewbox='0 0 48 48')
+                                  circle.est0(cx='21.9', cy='35.7', r='3.6')
+                                  circle.est0(cx='36.4', cy='35.8', r='3.6')
+                                  path.est0(d='M45.6 10.1c-.9-.3-1.9.2-2.1 1.1l-.7 2.1H17.3L16.2 10c-.1-.6-.6-1.1-1.2-1.3l-.5-.1H3c-.9 0-1.7.8-1.7 1.7 0 .9.7 1.7 1.7 1.7h10.3l1 3.2L17.2 31h23.9l3.5-12.3 2-6.4c.3-1-.1-1.9-1-2.2z')
+                              .pull-left.margin-left-sm.cart-dropdown-text Cart
+                              .pull-left.label.margin-left-sm.margin-right-sm.pad-vertical-none 0
+                            ul.dropdown-menu.dropdown-menu-cart.background-white.list-style-none
+                              li.dropdown-spacer.position-absolute
+                              // 
+                              li.clearfix.cart-dropdown-details
+                                .pull-left.gray
+                                  span.downcase 0 items in your cart
+                                .pull-right.text-right.cart-edit-link
+                                  a(href='/cart') EDIT
+                              li.divider
+                                hr.border-solid.margin-top-md.margin-bottom-md.gray-lighter
+                              li.margin-bottom-lg.font-size-md.cart-dropdown-details.clearfix
+                                .pull-left.upcase.teal.bold.soft CART SUBTOTAL:
+                                .pull-right.gray.text-right.bold.soft $0.00
+                              li.cart-dropdown-details
+                                a.btn.btn-default(href='/cart', data-disable-with='Please wait...') Checkout
+                    li.dropdown.cart-navbar-links.pad-left-xl.pad-right-xl.pull-right.ng-scope.ng-hide(uib-dropdown='', data-ng-show='!$ctrl.isUserSignedIn')
+                      a.sign-in-dropdown-toggle.dropdown-toggle.white.cursor-pointer.test-sign-in-link.ng-isolate-scope(href='/log-in') sign in
+                    li.dropdown.cart-account-link.dropdown-hoverable.pull-right.pad-left-xl.pad-right-xl.ng-scope(data-ng-show='$ctrl.isUserSignedIn' style="display: none;")
+                      a.white.ng-isolate-scope(href='/account')
+                        | my account
+                        span.fa.fa-angle-down
+                      ul.dropdown-menu.sign-in-dropdown.sign-out-dropdown.navigation-dropdown
+                        li.dropdown-spacer.position-absolute
+                        li
+                          span.dropdown-menu-arrow.position-absolute
+                        li.teal-link.ng-scope.ng-hide(data-ng-show='$ctrl.canPurchaseTrial')
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/select-bundle') Free Trial
+                        li.teal-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account') My Bundles
+                        li.teal-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/orders') Order History
+                        li.teal-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/credit_cards') Billing Information
+                        li.teal-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/addresses') Address Book
+                        li.teal-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/promotions') Promotions & Credits
+                        li.teal-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/settings')
+                            span.translation_missing(title='translation missing: en.content.v2.account.account_settings') Account Settings
+                        li.orange-link
+                          a.pad-vertical-sm.pad-left-md.pad-right-md.sign-in-dropdown-link(href='/account/invites') Invite Friends, Get $20
+                        li.border-teal-lighter-top.teal-link.account-last-link
+                          button.btn-link.sign-out-link.sign-in-dropdown-link(data-ng-click='$ctrl.signOut()') Sign Out
+                    li.nav-blog-link.cart-navbar-links.pull-right.lowercase.pad-left-xl
+                      a.white.pad-right-lg.block(href='http://blog.honest.com', target='blank')
+                        img(alt='Honestly Blog', src='/h2_assets/images/honestly-blog-logo.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+                    li.nav-blog-link.cart-navbar-links.pull-right.lowercase.pad-left-lg
+                      a.white.hidden-sm(data-ng-href='/invite', href='/invite') Invite Friends, Get $20
+                      a.white.visible-sm(data-ng-href='/invite', href='/invite') Invite Friends
+                    li.navbar-search.position-relative.pull-right.pad-top-sm.block.pad-left-sm
+                      product-search
+                        .product-search
+                          form.ng-pristine.ng-valid(role='search', method='get', action='/search')
+                            input.ng-pristine.ng-untouched.ng-valid.ng-empty(type='text', name='q', placeholder='search honest.com', autocomplete='off', data-ng-model='$ctrl.selected', data-uib-typeahead="product as product.name for product in $ctrl.products | filter:{name:$viewValue} | orderBy:'name' | limitTo:$ctrl.resultsLimit", data-typeahead-template-url='common/components/product_search/product.html', data-typeahead-popup-template-url='common/components/product_search/popup.html', aria-autocomplete='list', aria-expanded='false', aria-owns='typeahead-7-3264')
+                            ul#typeahead-7-3264.dropdown-menu.search-dropdown.ng-hide(style='display: none;', role='listbox', aria-hidden='true', data-ng-show='isOpen() && !moveInProgress', data-ng-style="{top: position().top+'px', left: position().left+'px'}", uib-typeahead-popup='', matches='matches', active='activeIdx', select='select(activeIdx)', move-in-progress='moveInProgress', query='query', position='position', template-url='common/components/product_search/product.html', popup-template-url='common/components/product_search/popup.html')
+                              span.this-is-a-test.caret.dropdown-menu-caret
+                              li.dropdown-spacer.position-absolute
+                              // 
+                              li
+                                .pad-right-md.pad-top-sm
+                                  a.pull-right(href='/search?q=')
+                                    | View all results  
+                                    i.fa.fa-arrow-right
+                            button(type='submit')
+                              i.fa.fa-search
+              .navbar-static-top.contact-navbar.bg-white.visible-default-nav
+                .container
+                  .main-navigation.tel
+                    .pad-top-lg.contact-us-details.font-size-sm.gray-light.pull-left.margin-bottom-none.margin-right-sm
+                        .chat-with-us.chat-with-us--nav.teal
+                          span.chat-with-us__txt Chat with Us!
+                        span.lowercase Call Us!
+                          strong 1.888.862.8818
+                          | |
+                        span Mon - Fri 5AM - 5PM PST
+                    p.pad-top-md.contact-us-details.font-size-sm.pull-right.margin-bottom-none.nav-free-shipping(data-popup-click-trigger='{"uid":"free-shipping"}', style='color: rgb(241, 92, 34); font-size: 15px; position: relative; top: 1px;')
+                      span.fa-stack
+                        svg.icon.gray-light.icon-honest-truck(viewbox='0 0 48 48')
+                          circle(cx='31.8', cy='31.3', r='2.8')
+                          circle(cx='14.1', cy='31.3', r='2.8')
+                          path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                      a.pad-left-none.unbold.pad-right-none(ng-click='$ctrl.freeShippingModal()')
+                        span.lowercase(style='color: rgb(241, 92, 34); font-size: 15px; position: relative; top: 2px; margin-left: 4px;')
+                          | FREE SHIPPING OVER $50
+                        span(style='color: #cacacc;') *
+              nav.navbar-static-top.menu-navbar.bg-white.visible-default-nav
+                .container
+                  ul.main-menu.margin-none.js-honest-menu
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-honest-tab='bundles', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm.flag-best-deal(data-ng-click="$ctrl.addMenuClick('bundles')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'bundles')", href='/bundles') Bundles
+                      span.menu-item-link.upcase.block.position-relative.visible-sm.flag-best-deal Bundles
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-ng-class="{'active' : $ctrl.activeCategory === 'baby'}", data-honest-tab='baby', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('diapering')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'diapering')", href='/baby') Diapering
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Diapering
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['baby']")
+                        .container.subcategory-container.subcategory-size-3
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Diapers & Training Pants
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/honest-diapers-bundle', data-ng-click='$ctrl.addProductClick()') Diapers & Wipes Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/honest-diapers', data-ng-click='$ctrl.addProductClick()') Diapers
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/overnight-diapers', data-ng-click='$ctrl.addProductClick()') Honest Overnight Diapers
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/honest-training-pants', data-ng-click='$ctrl.addProductClick()') Training Pants
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/honest-swim-diapers', data-ng-click='$ctrl.addProductClick()') Honest Swim Diaper
+                                em.orange new!
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Wipes & Baby Care
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/honest-wipes', data-ng-click='$ctrl.addProductClick()') Wipes
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/wipes-dispenser', data-ng-click='$ctrl.addProductClick()') Wipes Dispenser
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/honest-travel-wipes', data-ng-click='$ctrl.addProductClick()') Wipes - 4 Travel Packs
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/travel-wipes-dispenser', data-ng-click='$ctrl.addProductClick()') Travel Wipes Dispenser
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/healing-balm', data-ng-click='$ctrl.addProductClick()') Healing Balm
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/diaper-rash-cream', data-ng-click='$ctrl.addProductClick()') Diaper Rash Cream
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/organic-baby-powder', data-ng-click='$ctrl.addProductClick()') Organic Baby Powder
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/soothing-bottom-wash', data-ng-click='$ctrl.addProductClick()') Soothing Bottom Wash
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Gifts & Accessories
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/diaper-cakes', data-ng-click='$ctrl.addProductClick()') Diaper Cakes
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/mini-diaper-cakes', data-ng-click='$ctrl.addProductClick()') Mini Diaper Cakes
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/honest-city-backpack', data-ng-click='$ctrl.addProductClick()') Honest City Backpack
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/honest-everything-tote', data-ng-click='$ctrl.addProductClick()') Honest Everything Tote
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/diaper-caddy', data-ng-click='$ctrl.addProductClick()') Diaper Caddy
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/baby-arrival-gift-set', data-ng-click='$ctrl.addProductClick()') Baby Arrival Gift Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/honest-carryall-satchel', data-ng-click='$ctrl.addProductClick()') Honest Carryall Satchel
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/hope-clutch', data-ng-click='$ctrl.addProductClick()') Hope Clutch
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/baby-gift-set', data-ng-click='$ctrl.addProductClick()') Baby Basics Gift Set
+                                em.orange new!
+                          .pad-none.featured-container
+                            p.orange.upcase.margin-bottom-md.subcategory-name BUNDLE & SAVE 35%
+                            a(href='https://www.honest.com/baby/honest-diapers-bundle')
+                              img.img-responsive(alt='Productcategory-4-category_featured_product-40075b9a-6667-4833-9f56-0c2ef57a137e', ng-src='//i.thcdn.co/uploads/managed_assets/file/9226/ProductCategory-4-category_featured_product-40075b9a-6667-4833-9f56-0c2ef57a137e.png', src='//i.thcdn.co/uploads/managed_assets/file/9226/ProductCategory-4-category_featured_product-40075b9a-6667-4833-9f56-0c2ef57a137e.png')
+                            a(href='https://www.honest.com/baby/honest-diapers-bundle')
+                              h5.margin-bottom-sm.inline-block Diapers & Wipes Bundle
+                            .feature-description
+                            a.pull-right.inline-block(href='https://www.honest.com/baby/honest-diapers-bundle')
+                              | SHOP NOW
+                              span.fa.fa-arrow-right
+                        .container
+                          p.clear-both.text-right.view-all-link
+                            a.upcase.font-size-sm(href='/baby')
+                              | View all Diapering ( 24 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-ng-class="{'active' : $ctrl.activeCategory === 'feeding'}", data-honest-tab='feeding', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('feeding')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'feeding')", href='/feeding') Feeding
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Feeding
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['feeding']")
+                        .container.subcategory-container.subcategory-size-3
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name breast feeding
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/lactation-plus', data-ng-click='$ctrl.addProductClick()') Lactation Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/baby-dha', data-ng-click='$ctrl.addProductClick()') Baby DHA
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-8oz-bottle', data-ng-click='$ctrl.addProductClick()') Silicone 8 oz. Bottle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-5oz-bottle', data-ng-click='$ctrl.addProductClick()') Silicone 5 oz. Bottle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-peristaltic-nipples', data-ng-click='$ctrl.addProductClick()') Peristaltic Silicone Nipples (2-pack)
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-nipple-balm', data-ng-click='$ctrl.addProductClick()') Organic Nipple Balm
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/magnetic-bandana-bibs', data-ng-click='$ctrl.addProductClick()') Magnetic Bandana Bibs
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/organic-nursing-scarf', data-ng-click='$ctrl.addProductClick()') 2-in-1 Organic Cotton Nursing Cover + Scarf
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name formula feeding
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/organic-infant-formula-dha-bundle', data-ng-click='$ctrl.addProductClick()') Organic Infant Formula + DHA Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/organic-premium-formula', data-ng-click='$ctrl.addProductClick()') Organic Premium Infant Formula
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/baby-dha', data-ng-click='$ctrl.addProductClick()') Baby DHA
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/formula-dispenser', data-ng-click='$ctrl.addProductClick()') Formula Dispenser
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-8oz-bottle', data-ng-click='$ctrl.addProductClick()') Silicone 8 oz. Bottle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-5oz-bottle', data-ng-click='$ctrl.addProductClick()') Silicone 5 oz. Bottle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-peristaltic-nipples', data-ng-click='$ctrl.addProductClick()') Peristaltic Silicone Nipples (2-pack)
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/magnetic-bandana-bibs', data-ng-click='$ctrl.addProductClick()') Magnetic Bandana Bibs
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name combination feeding
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/organic-infant-formula-dha-bundle', data-ng-click='$ctrl.addProductClick()') Organic Infant Formula + DHA Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/organic-premium-formula', data-ng-click='$ctrl.addProductClick()') Organic Premium Infant Formula
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/lactation-plus', data-ng-click='$ctrl.addProductClick()') Lactation Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/baby-dha', data-ng-click='$ctrl.addProductClick()') Baby DHA
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/formula-dispenser', data-ng-click='$ctrl.addProductClick()') Formula Dispenser
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-8oz-bottle', data-ng-click='$ctrl.addProductClick()') Silicone 8 oz. Bottle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-5oz-bottle', data-ng-click='$ctrl.addProductClick()') Silicone 5 oz. Bottle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/natural-feeding-peristaltic-nipples', data-ng-click='$ctrl.addProductClick()') Peristaltic Silicone Nipples (2-pack)
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-nipple-balm', data-ng-click='$ctrl.addProductClick()') Organic Nipple Balm
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/magnetic-bandana-bibs', data-ng-click='$ctrl.addProductClick()') Magnetic Bandana Bibs
+                          .pad-none.featured-container
+                            p.orange.upcase.margin-bottom-md.subcategory-name Get A Trial
+                            a(href='/formula-trial')
+                              img.img-responsive(alt='Productcategory-49-category_featured_product-3313fe6c-76f4-4aa4-a59e-65c2bc699051', ng-src='//i.thcdn.co/uploads/managed_assets/file/9198/ProductCategory-49-category_featured_product-3313fe6c-76f4-4aa4-a59e-65c2bc699051.png', src='//i.thcdn.co/uploads/managed_assets/file/9198/ProductCategory-49-category_featured_product-3313fe6c-76f4-4aa4-a59e-65c2bc699051.png')
+                            a(href='/formula-trial')
+                              h5.margin-bottom-sm.inline-block Organic Infant Formula Trial
+                            .feature-description
+                            a.pull-right.inline-block(href='/formula-trial')
+                              | GET STARTED
+                              span.fa.fa-arrow-right
+                        .container
+                          p.clear-both.text-right.view-all-link
+                            a.upcase.font-size-sm(href='/feeding')
+                              | View all Feeding ( 12 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-ng-class="{'active' : $ctrl.activeCategory === 'bath-and-body'}", data-honest-tab='bath-and-body', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('personalcare')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'personalcare')", href='/bath-and-body') Personal Care
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Personal Care
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['bath-and-body']")
+                        .container.subcategory-container.subcategory-size-4
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Bath & Body Care
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/family-essentials-bundle', data-ng-click='$ctrl.addProductClick()') Essentials Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/fragrance-free-lotion', data-ng-click='$ctrl.addProductClick()') Face + Body Lotion - Purely Simple
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/nourishing-shampoo-body-wash', data-ng-click='$ctrl.addProductClick()') Shampoo + Body Wash - Deeply Nourishing
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/deeply-nourishing-conditioner', data-ng-click='$ctrl.addProductClick()') Conditioner - Deeply Nourishing
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/deeply-nourishing-bubble-bath', data-ng-click='$ctrl.addProductClick()') Bubble Bath - Deeply Nourishing
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/nourishing-lotion', data-ng-click='$ctrl.addProductClick()') Face + Body Lotion - Deeply Nourishing
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/gentle-shampoo-body-wash', data-ng-click='$ctrl.addProductClick()') Shampoo + Body Wash - Perfectly Gentle
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/perfectly-gentle-conditioner', data-ng-click='$ctrl.addProductClick()') Conditioner - Perfectly Gentle
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/perfectly-gentle-bubble-bath', data-ng-click='$ctrl.addProductClick()') Bubble Bath - Perfectly Gentle
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/hydrating-lotion', data-ng-click='$ctrl.addProductClick()') Face + Body Lotion - Perfectly Gentle
+                                em.orange new!
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Hand Soaps & Sanitizers
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/lemongrass-hand-sanitizer-gel', data-ng-click='$ctrl.addProductClick()') Lemongrass Hand Sanitizer Gel (2 oz. and 8 oz.)
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/lavender-hand-sanitizer', data-ng-click='$ctrl.addProductClick()') Lavender Hand Sanitizer Gel (2 oz. and 8 oz.)
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/orange-scented-hand-sanitizer', data-ng-click='$ctrl.addProductClick()') Orange Hand Sanitizer Gel (2 oz. and 8 oz.)
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/lemongrass-hand-sanitizer-spray', data-ng-click='$ctrl.addProductClick()') Lemongrass Hand Sanitizer Spray
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/lavender-hand-sanitizer-spray', data-ng-click='$ctrl.addProductClick()') Lavender Hand Sanitizer Spray
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/orange-hand-sanitizer-spray', data-ng-click='$ctrl.addProductClick()') Orange Hand Sanitizer Spray
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/foaming-hand-soap', data-ng-click='$ctrl.addProductClick()') Foaming Hand Soap
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/honest-hand-soap', data-ng-click='$ctrl.addProductClick()') Hand Soap
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Sun Care
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/mineral-sunscreen-spf-50', data-ng-click='$ctrl.addProductClick()') Mineral Sunscreen SPF 50+
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/sunscreen-spray', data-ng-click='$ctrl.addProductClick()') Mineral Sunscreen Spray SPF 30
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/sunscreen-stick', data-ng-click='$ctrl.addProductClick()') Mineral Sunscreen Stick SPF 30
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Feminine Care
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-cotton-tampons-with-applicator-regular', data-ng-click='$ctrl.addProductClick()') Organic Cotton Applicator Tampons, Regular
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-cotton-tampons-with-applicator-super', data-ng-click='$ctrl.addProductClick()') Organic Cotton Applicator Tampons, Super
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-cotton-tampons-with-applicator-super-plus', data-ng-click='$ctrl.addProductClick()') Organic Cotton Applicator Tampons, Super Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-cotton-tampons-no-applicator-regular', data-ng-click='$ctrl.addProductClick()') Organic Cotton Tampons, No Applicator, Regular
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-cotton-tampons-no-applicator-super', data-ng-click='$ctrl.addProductClick()') Organic Cotton Tampons, No Applicator, Super
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/organic-cotton-tampons-no-applicator-super-plus', data-ng-click='$ctrl.addProductClick()') Organic Cotton Tampons, No Applicator, Super Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/ultra-thin-pads-made-with-organic-cotton-regular', data-ng-click='$ctrl.addProductClick()') Pads Made With Organic Cotton, Regular
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/ultra-thin-pads-made-with-organic-cotton-super', data-ng-click='$ctrl.addProductClick()') Pads Made With Organic Cotton, Super
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/liners-made-with-organic-cotton', data-ng-click='$ctrl.addProductClick()') Liners Made With Organic Cotton
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/thong-liners-made-with-organic-cotton', data-ng-click='$ctrl.addProductClick()') Thong Liners Made With Organic Cotton
+                        .container
+                          p.clear-both.text-right
+                            a.upcase.font-size-sm(href='/bath-and-body')
+                              | View all Personal Care ( 57 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-ng-class="{'active' : $ctrl.activeCategory === 'cleaning'}", data-honest-tab='cleaning', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('cleaning')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'cleaning')", href='/cleaning') Cleaning
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Cleaning
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['cleaning']")
+                        .container.subcategory-container.subcategory-size-4
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Cleaners
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/bath-and-body/family-essentials-bundle', data-ng-click='$ctrl.addProductClick()') Essentials Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/wet-mopping-pads', data-ng-click='$ctrl.addProductClick()') Wet Mopping Pads
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/air-fabric-freshener', data-ng-click='$ctrl.addProductClick()') Air + Fabric Freshener
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-surface-cleaner', data-ng-click='$ctrl.addProductClick()') Multi-Surface Cleaner
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-bathroom-cleaner', data-ng-click='$ctrl.addProductClick()') Bathroom Cleaner
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/glass-cleaner', data-ng-click='$ctrl.addProductClick()') Glass + Window Cleaner
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-floor-cleaner', data-ng-click='$ctrl.addProductClick()') Floor Cleaner
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/spray-cleaner-concentrate-refills', data-ng-click='$ctrl.addProductClick()') Spray Cleaner Refills
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-toilet-cleaner', data-ng-click='$ctrl.addProductClick()') Toilet Cleaner
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-fruit-veggie-wash', data-ng-click='$ctrl.addProductClick()') Fruit + Veggie Wash
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Laundry
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-laundry-detergent', data-ng-click='$ctrl.addProductClick()') Laundry Detergent
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/laundry-packs', data-ng-click='$ctrl.addProductClick()') 4-in-1 Laundry Packs
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-dryer-cloths', data-ng-click='$ctrl.addProductClick()') Dryer Cloths
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-stain-remover', data-ng-click='$ctrl.addProductClick()') Stain Remover
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-oxy-boost', data-ng-click='$ctrl.addProductClick()') Oxy Boost
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Dish Care
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-dish-soap', data-ng-click='$ctrl.addProductClick()') Dish Soap
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/dishwasher-packs', data-ng-click='$ctrl.addProductClick()') Dishwasher Packs
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-dishwasher-detergent', data-ng-click='$ctrl.addProductClick()') Dishwasher Detergent
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/honest-rinse-aid', data-ng-click='$ctrl.addProductClick()') Rinse Aid
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Gifts & Accessories
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/discovery-set', data-ng-click='$ctrl.addProductClick()') Discovery Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/suds-up-dish-brush', data-ng-click='$ctrl.addProductClick()') Suds Up
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/bamboo-dish-brush', data-ng-click='$ctrl.addProductClick()') Dish Brush
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/nesting-gift-set', data-ng-click='$ctrl.addProductClick()') Happy Home Gift Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/cleaning/healthy-child-healthy-world', data-ng-click='$ctrl.addProductClick()') Healthy Child Healthy World
+                        .container
+                          p.clear-both.text-right
+                            a.upcase.font-size-sm(href='/cleaning')
+                              | View all Cleaning ( 26 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-ng-class="{'active' : $ctrl.activeCategory === 'health-and-wellness'}", data-honest-tab='health-and-wellness', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('vitamins')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'vitamins')", href='/health-and-wellness') Vitamins & More
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Vitamins & More
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['health-and-wellness']")
+                        .container.subcategory-container.subcategory-size-3
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Women's
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/health-and-wellness-bundle', data-ng-click='$ctrl.addProductClick()') Health & Wellness Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/prenatal-complete-once-daily', data-ng-click='$ctrl.addProductClick()') Prenatal Once Daily
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/feeding/lactation-plus', data-ng-click='$ctrl.addProductClick()') Lactation Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/immunity-plus', data-ng-click='$ctrl.addProductClick()') Immunity Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/dha-complete', data-ng-click='$ctrl.addProductClick()') DHA Complete
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/womens-complete-once-daily', data-ng-click='$ctrl.addProductClick()') Women's Complete Once Daily
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/prenatal', data-ng-click='$ctrl.addProductClick()') Whole-Food Based Prenatal
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Men's
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/health-and-wellness-bundle', data-ng-click='$ctrl.addProductClick()') Health & Wellness Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/immunity-plus', data-ng-click='$ctrl.addProductClick()') Immunity Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/mens-complete-once-daily', data-ng-click='$ctrl.addProductClick()') Men's Complete Once Daily
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Kid's
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/health-and-wellness-bundle', data-ng-click='$ctrl.addProductClick()') Health & Wellness Bundle
+                                p.no-wrap.upcase.menu-best-deal-flag.font-size-xs.background-orange.white.pad-left-sm.inline-block.margin-bottom-none.position-relative Best Deal
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/gummy-vitamins', data-ng-click='$ctrl.addProductClick()') Gummy Multi-Vitamin
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/immunity-plus', data-ng-click='$ctrl.addProductClick()') Immunity Plus
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/baby-dha', data-ng-click='$ctrl.addProductClick()') Baby DHA
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/health-and-wellness/baby-toddler-multi-powder', data-ng-click='$ctrl.addProductClick()') Baby & Toddler Multi Powder
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/organic-breathe-easy-rub', data-ng-click='$ctrl.addProductClick()') Organic Breathe Easy Rub
+                          .pad-none.featured-container
+                            p.orange.upcase.margin-bottom-md.subcategory-name Featured Product
+                            a(href='/health-and-wellness/womens-complete-one-a-day')
+                              img.img-responsive(alt='Productcategory-11-category_featured_product-781c41dd-ae03-4174-8db9-64c59cf2261c', ng-src='//i.thcdn.co/uploads/managed_assets/file/10700/ProductCategory-11-category_featured_product-781c41dd-ae03-4174-8db9-64c59cf2261c.jpg', src='//i.thcdn.co/uploads/managed_assets/file/10700/ProductCategory-11-category_featured_product-781c41dd-ae03-4174-8db9-64c59cf2261c.jpg')
+                            a(href='/health-and-wellness/womens-complete-one-a-day')
+                              h5.margin-bottom-sm.inline-block Women's Complete Once Daily
+                            .feature-description
+                            a.pull-right.inline-block(href='/health-and-wellness/womens-complete-one-a-day')
+                              | SHOP NOW
+                              span.fa.fa-arrow-right
+                        .container
+                          p.clear-both.text-right.view-all-link
+                            a.upcase.font-size-sm(href='/health-and-wellness')
+                              | View all Vitamins & More ( 12 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-ng-class="{'active' : $ctrl.activeCategory === 'collective'}", data-honest-tab='collective', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('gear')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'gear')", href='/collective') Gear & More
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Gear & More
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['collective']")
+                        .container.subcategory-container.subcategory-size-3
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Nursery & Decor
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/crib', data-ng-click='$ctrl.addProductClick()') 4-in-1 Convertible Crib With Toddler Rail
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/dresser', data-ng-click='$ctrl.addProductClick()') Dresser With Changer Top
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/organic-swaddles', data-ng-click='$ctrl.addProductClick()') Organic Swaddles 3-Pack
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/organic-protective-radiation-blanket', data-ng-click='$ctrl.addProductClick()') Organic Protective Radiation Blanket
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Gear & Accessories
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/honest-everything-tote', data-ng-click='$ctrl.addProductClick()') Honest Everything Tote
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/honest-city-backpack', data-ng-click='$ctrl.addProductClick()') Honest City Backpack
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/leopard-baby-carrier', data-ng-click='$ctrl.addProductClick()') 4-in-1 Leopard Baby Carrier
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/bath-set', data-ng-click='$ctrl.addProductClick()') Organic Cotton Hooded Towel + Washcloth Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/kids-backpacks', data-ng-click='$ctrl.addProductClick()') Kid's Backpacks
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/lunch-box', data-ng-click='$ctrl.addProductClick()') Lunch Boxes
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/hope-clutch', data-ng-click='$ctrl.addProductClick()') Hope Clutch
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/spirit-diaper-tote', data-ng-click='$ctrl.addProductClick()') Spirit Diaper Tote
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/collective/honest-ice-packs', data-ng-click='$ctrl.addProductClick()') Honest Ice Packs
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/feeding/magnetic-bandana-bibs', data-ng-click='$ctrl.addProductClick()') Magnetic Bandana Bibs
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Clothing
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/upf-50-swim-shirt', data-ng-click='$ctrl.addProductClick()') UPF 50 Swim Shirt
+                          .pad-none.featured-container
+                            p.orange.upcase.margin-bottom-md.subcategory-name FEATURED PRODUCT
+                            a(href='/collective/leopard-baby-carrier')
+                              img.img-responsive(alt='Productcategory-12-category_featured_product-43ab78ce-220b-426f-aa17-96ee12acf57e', ng-src='//i.thcdn.co/uploads/managed_assets/file/13608/ProductCategory-12-category_featured_product-43ab78ce-220b-426f-aa17-96ee12acf57e.jpg', src='//i.thcdn.co/uploads/managed_assets/file/13608/ProductCategory-12-category_featured_product-43ab78ce-220b-426f-aa17-96ee12acf57e.jpg')
+                            a(href='/collective/leopard-baby-carrier')
+                              h5.margin-bottom-sm.inline-block 4-in-1 Leopard Baby Carrier
+                            .feature-description
+                            a.pull-right.inline-block(href='/collective/leopard-baby-carrier')
+                              | SHOP NOW
+                              span.fa.fa-arrow-right
+                        .container
+                          p.clear-both.text-right.view-all-link
+                            a.upcase.font-size-sm(href='/collective')
+                              | View all Gear & More ( 28 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+                    li.dropdown.main-menu-item.text-center.ng-isolate-scope(data-honest-tab='gifts', data-touch-body-on='mouseenter')
+                      a.menu-item-link.upcase.block.position-relative.hidden-sm(data-ng-click="$ctrl.addMenuClick('gifts')", data-ng-mouseover="$ctrl.addMenuImpression($event, 'gifts')", href='/gifts') Gifts
+                      span.menu-item-link.upcase.block.position-relative.visible-sm Gifts
+                      // 
+                      .dropdown-menu.main-menu-dropdown.pad-top-xl.font-size-sm(data-ng-if="$ctrl.activatedTabs['gifts']")
+                        .container.subcategory-container.subcategory-size-3
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Gift Cards
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/diaper-bundle-gift-card', data-ng-click='$ctrl.addProductClick()') Diapers & Wipes Gift Bundle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/essentials-bundle-gift-card', data-ng-click='$ctrl.addProductClick()') Essentials Gift Bundle
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/card', data-ng-click='$ctrl.addProductClick()') Honest Gift Card
+                              li.menu-list-item.margin-bottom-md
+                                a.margin-right-sm(href='/gift/redeem') Redeem
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Diaper Cakes
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/mini-diaper-cakes', data-ng-click='$ctrl.addProductClick()') Mini Diaper Cakes
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/diaper-cakes', data-ng-click='$ctrl.addProductClick()') Diaper Cakes
+                                em.orange new!
+                          .subcategory-list.pad-right-xl.margin-bottom-xl
+                            p.margin-bottom-md.orange.upcase.subcategory-name Gift Sets
+                            ul.pad-none
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/baby-gift-set', data-ng-click='$ctrl.addProductClick()') Baby Basics Gift Set
+                                em.orange new!
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/baby/discovery-set', data-ng-click='$ctrl.addProductClick()') Discovery Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/nesting-gift-set', data-ng-click='$ctrl.addProductClick()') Happy Home Gift Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/baby-arrival-gift-set', data-ng-click='$ctrl.addProductClick()') Baby Arrival Gift Set
+                              li.menu-list-item.margin-bottom-md
+                                a.menu-list-item-link.margin-right-sm(href='/gifts/bath-time-gift-set', data-ng-click='$ctrl.addProductClick()') Bathtime Gift Set
+                          .pad-none.featured-container
+                            p.orange.upcase.margin-bottom-md.subcategory-name GIVE THE HONEST GIFT!
+                            a(href='/gifts/card')
+                              img.img-responsive(alt='Productcategory-8-category_featured_product-2696bb10-a4d6-4a9f-b969-8309487f1d5f', ng-src='//i.thcdn.co/uploads/managed_assets/file/9631/ProductCategory-8-category_featured_product-2696bb10-a4d6-4a9f-b969-8309487f1d5f.jpg', src='//i.thcdn.co/uploads/managed_assets/file/9631/ProductCategory-8-category_featured_product-2696bb10-a4d6-4a9f-b969-8309487f1d5f.jpg')
+                            a(href='/gifts/card')
+                              h5.margin-bottom-sm.inline-block Gift Cards in Any Amount
+                            .feature-description
+                            a.pull-right.inline-block(href='/gifts/card')
+                              | SHOP NOW
+                              span.fa.fa-arrow-right
+                        .container
+                          p.clear-both.text-right.view-all-link
+                            a.upcase.font-size-sm(href='/gifts')
+                              | View all Gifts ( 12 )
+                              span.fa.fa-arrow-right
+                          .border-top-green.clear-both.free-shipping-container.position-relative.text-center
+                            p.green.text-center.bg-white.inline-block.pad-left-md.pad-right-md.position-relative.free-shipping-text(data-popup-click-trigger='{"uid":"free-shipping"}')
+                              span.fa-stack
+                                svg.icon.icon-honest-truck(viewbox='0 0 48 48')
+                                  circle(cx='31.8', cy='31.3', r='2.8')
+                                  circle(cx='14.1', cy='31.3', r='2.8')
+                                  path(d='M8 29.3h2.3c.7-1.5 2.1-2.5 3.8-2.5 1.7 0 3.2 1 3.8 2.5h8.7v-16H8v16zM28.4 17.8v11.1c.8-1 2-1.7 3.4-1.7 1.7 0 3.2 1.2 3.8 2.6H40v-7.1l-4.5-4.9h-7.1z')
+                              a.pad-left-none.unbold.pad-right-none.green(href='#')
+                                span.upcase FREE SHIPPING
+                                span on orders over $50
+                      // 
+            // 
+            div(data-ng-switch-when='default')
+            // 
+            // 
+            // 
+            navigation-mobile
+              .navbar.navbar-default.visible-mobile-nav
+                .container
+                  .row.row-classic
+                    .navbar-header.text-center
+                      button#js-navbar-main-toggle.navbar-toggle.navbar-toggle-thick.pull-left.white.margin-left-sm.margin-right-sm(type='button')
+                        span#js-navbar-main-toggle-icon.fa-2x.fa.fa-reorder(data-open-class='in', data-target='#navbar-collapse-honest', toggle-horizontal='')
+                      .navbar-brand.navbar-brand-tall.navbar-brand-mobile.navbar-brand-logo-centered
+                        a(href='/')
+                          img(alt='Mobile_header_logo', src='/h2_assets/images/mobile_header_logo.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+                      li.cart-navbar-links.shopping-cart-dropdown-modern.dropdown-hoverable.pull-right
+                        section
+                          ul
+                            li.navbar-text.navbar-text-tall.dropdown.margin-left-none
+                              a(href='/cart')
+                                .cart-dropdown-link.navbar-cart-text-tall.gray
+                                  svg.icon.icon-honest_cart(viewbox='0 0 48 48')
+                                    circle.est0(cx='21.9', cy='35.7', r='3.6')
+                                    circle.est0(cx='36.4', cy='35.8', r='3.6')
+                                    path.est0(d='M45.6 10.1c-.9-.3-1.9.2-2.1 1.1l-.7 2.1H17.3L16.2 10c-.1-.6-.6-1.1-1.2-1.3l-.5-.1H3c-.9 0-1.7.8-1.7 1.7 0 .9.7 1.7 1.7 1.7h10.3l1 3.2L17.2 31h23.9l3.5-12.3 2-6.4c.3-1-.1-1.9-1-2.2z')
+                                .pull-left.margin-left-sm.cart-dropdown-text Cart
+                                .pull-left.label.margin-left-sm.margin-right-sm.pad-vertical-none 0
+                              ul.dropdown-menu.dropdown-menu-cart.background-white.list-style-none
+                                li.dropdown-spacer.position-absolute
+                                // 
+                                li.clearfix.cart-dropdown-details
+                                  .pull-left.gray
+                                    span.downcase 0 items in your cart
+                                  .pull-right.text-right.cart-edit-link
+                                    a(href='/cart') EDIT
+                                li.divider
+                                  hr.border-solid.margin-top-md.margin-bottom-md.gray-lighter
+                                li.margin-bottom-lg.font-size-md.cart-dropdown-details.clearfix
+                                  .pull-left.upcase.teal.bold.soft CART SUBTOTAL:
+                                  .pull-right.gray.text-right.bold.soft $0.00
+                                li.cart-dropdown-details
+                                  a.btn.btn-default(href='/cart', data-disable-with='Please wait...') Checkout
+                    #navbar-collapse-honest.navbar-collapse
+                      ul.nav.navbar-nav.upcase.navbar-nav-logo-spacer.navbar-nav-segmented
+                        li
+                          form.navbar-form.ng-pristine.ng-valid(accept-charset='UTF-8', action='/search', method='post', role='search', novalidate='novalidate')
+                            .form-group
+                              input#q.form-control(name='q', placeholder='Search Honest.com', type='text', value='')
+                              span.form-group-btn
+                                button.btn.btn-white(type='submit')
+                                  span.fa.fa-search
+                        li.nav-separator.bold.highlight.ng-hide(data-ng-show='!$ctrl.isUserSignedIn')
+                          a(href='/users/sign_in')
+                            svg.icon.icon-honest_account(viewbox='0 0 48 48')
+                              style.
+                                .cst0{fill:#00acc8}
+                              path.cst0(d='M28.7 25.5v2.9c.5.2 1.1.5 1.8.8l2.1.9c.7.3 1.4.6 2.2.9l2.1.9c.7.3 1.3.5 1.8.7.5.2 1 .4 1.3.5.7.2 1.3.6 1.7 1.1.4.5.8 1 1 1.5.3.6.5 1.3.6 1.9v3.1H4.8v-3.1c.1-.7.4-1.3.7-1.9.2-.5.6-1 1-1.5s1-.9 1.7-1.1c.3-.1.8-.3 1.4-.5.6-.2 1.2-.5 1.9-.8.7-.3 1.4-.6 2.2-.9.8-.3 1.5-.7 2.3-1 .8-.3 1.5-.6 2.2-.9.7-.3 1.3-.6 1.8-.8v-2.8c0-.1-.1-.3-.2-.6s-.2-.5-.2-.8c-.1-.3-.2-.7-.3-1.1-.5-.9-.9-1.9-1.1-3-.3-1.1-.4-2.3-.4-3.6 0-1.7.2-3.1.5-4.2.4-1.2.8-2.1 1.4-2.8.3-.8 1.1-1.3 1.9-1.7.8-.3 1.7-.5 2.6-.5.9 0 1.8.2 2.6.5s1.5.8 2.2 1.6c.6.7 1.1 1.7 1.5 2.8.4 1.2.5 2.6.5 4.3 0 1.2-.1 2.4-.4 3.5-.3 1.1-.6 2.1-1.1 3-.1.4-.3.8-.4 1.2l-.3.9c-.1.2-.1.5-.1.6z')
+                            | Sign In
+                        li.nav-separator.bold.highlight(data-ng-show='$ctrl.isUserSignedIn')
+                          a(href='/account')
+                            svg.icon.icon-honest_account(viewbox='0 0 48 48')
+                              style.
+                                .cst0{fill:#00acc8}
+                              path.cst0(d='M28.7 25.5v2.9c.5.2 1.1.5 1.8.8l2.1.9c.7.3 1.4.6 2.2.9l2.1.9c.7.3 1.3.5 1.8.7.5.2 1 .4 1.3.5.7.2 1.3.6 1.7 1.1.4.5.8 1 1 1.5.3.6.5 1.3.6 1.9v3.1H4.8v-3.1c.1-.7.4-1.3.7-1.9.2-.5.6-1 1-1.5s1-.9 1.7-1.1c.3-.1.8-.3 1.4-.5.6-.2 1.2-.5 1.9-.8.7-.3 1.4-.6 2.2-.9.8-.3 1.5-.7 2.3-1 .8-.3 1.5-.6 2.2-.9.7-.3 1.3-.6 1.8-.8v-2.8c0-.1-.1-.3-.2-.6s-.2-.5-.2-.8c-.1-.3-.2-.7-.3-1.1-.5-.9-.9-1.9-1.1-3-.3-1.1-.4-2.3-.4-3.6 0-1.7.2-3.1.5-4.2.4-1.2.8-2.1 1.4-2.8.3-.8 1.1-1.3 1.9-1.7.8-.3 1.7-.5 2.6-.5.9 0 1.8.2 2.6.5s1.5.8 2.2 1.6c.6.7 1.1 1.7 1.5 2.8.4 1.2.5 2.6.5 4.3 0 1.2-.1 2.4-.4 3.5-.3 1.1-.6 2.1-1.1 3-.1.4-.3.8-.4 1.2l-.3.9c-.1.2-.1.5-.1.6z')
+                            | My Account
+                        li.nav-separator.ng-hide(data-ng-show='$ctrl.canPurchaseFreeTrial')
+                          a(href='/account/select-bundle') Free Trial
+                        li.nav-best-deal.js-activeable.nav-separator(data-honest-tab='bundles')
+                          a.first-tier-nav.best-deal.best-deal-nav(href='/bundles') Bundles
+                        li.js-activeable.nav-separator(data-honest-tab='baby')
+                          a.first-tier-nav.baby(href='/baby') Diapering
+                        li.js-activeable.nav-separator(data-honest-tab='feeding')
+                          a.first-tier-nav.feeding(href='/feeding') Feeding
+                        li.js-activeable.nav-separator(data-honest-tab='bath-and-body')
+                          a.first-tier-nav.bath-and-body(href='/bath-and-body') Personal Care
+                        li.js-activeable.nav-separator(data-honest-tab='cleaning')
+                          a.first-tier-nav.cleaning(href='/cleaning') Cleaning
+                        li.js-activeable.nav-separator(data-honest-tab='health-and-wellness')
+                          a.first-tier-nav.health-and-wellness(href='/health-and-wellness') Vitamins & More
+                        li.js-activeable.nav-separator(data-honest-tab='collective')
+                          a.first-tier-nav.collective(href='/collective') Gear & More
+                        li.js-activeable.nav-separator(data-honest-tab='gifts')
+                          a.first-tier-nav.gifts(href='/gifts') Gifts
+                        li.nav-separator.gray
+                          a(href='/invite') Invite Friends, Get $20
+                        li.nav-separator.gray
+                          a(href='http://blog.honest.com') Honest Blog
+                        li.teal-link(data-ng-show='$ctrl.isUserSignedIn')
+                          button.btn-link.sign-out-link-mobile(data-ng-click='$ctrl.signOut()') SIGN OUT

@@ -1,0 +1,30 @@
+extends ../layouts/module
+
+block vars
+  - var moduleSlug = 'sliding-panel'
+  - var moduleName = 'Sliding Panel'
+  - var moduleType = 'Mobile'
+
+block content
+  .sliding-panel.module(data-ng-app="slidingPanel" data-ng-controller="slidingPanelCtrl as sp")
+  
+    .visible-xs
+      .row.row-classic.fixed
+        .col-xs-4 Size
+        .col-xs-6 3
+        .col-xs-2
+          .fa.fa-pencil.fa-trigger(data-ng-click="sp.edit = true")
+      .row.row-classic
+        .col-xs-12.content
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum eu turpis quis faucibus. Proin consequat volutpat bibendum. Sed accumsan sodales justo, et lobortis tortor tincidunt elementum. Sed luctus tincidunt convallis. Fusce scelerisque aliquet felis ac elementum. Nunc at pulvinar quam. Vivamus ac nisi at quam laoreet ullamcorper non ac velit. Ut fermentum, sem quis elementum ullamcorper, nisl arcu condimentum ex, et tempor ex ex eu augue. Praesent pretium tortor ac commodo pellentesque. Ut eget auctor purus.
+
+          p Pellentesque venenatis placerat velit sed consequat. Aliquam tempus id urna quis porta. Fusce non commodo dui, vitae semper libero. Duis ultrices sit amet mi sit amet vulputate. Ut a purus eleifend, convallis leo at, vehicula magna. Nullam nunc felis, imperdiet eget euismod at, malesuada nec enim. Mauris iaculis ornare leo, fermentum euismod orci ultricies viverra. Aliquam vitae tortor dolor. Nullam eleifend id lorem nec dignissim. Fusce mi quam, lacinia at lacus posuere, sodales pellentesque orci. Mauris vel tincidunt odio. Suspendisse ultrices enim sapien, sit amet dictum nibh aliquam in. Vestibulum sagittis tristique lorem, pretium iaculis leo hendrerit quis. In ipsum diam, commodo eget egestas et, convallis vitae felis. Morbi et purus metus.
+
+          p Vestibulum egestas, mi quis cursus condimentum, lectus diam efficitur velit, sit amet lobortis felis mi a justo. In hac habitasse platea dictumst. Vivamus tincidunt justo nec elit efficitur faucibus. Vestibulum tempor, ante nec maximus efficitur, sapien ipsum consectetur quam, non facilisis diam orci et est. Ut faucibus pellentesque tortor, nec sagittis lorem placerat sed. Morbi egestas nisl ut velit pharetra rhoncus. Sed vitae facilisis diam. Donec cursus dui a quam hendrerit, eu laoreet nisl euismod. Integer ac leo in elit accumsan fringilla sed et odio.
+
+    .slide-panel.transition(data-ng-class="{'open':sp.edit}")
+        .slide-panel__close-icon(data-ng-click="sp.edit = false")
+          i.fa.fa-times.fa-trigger
+        .col-xs-12 Hello
+  
+  include ../layouts/_no-dt.jade

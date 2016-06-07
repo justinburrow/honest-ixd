@@ -1,0 +1,35 @@
+doctype html
+html.no-js
+  block vars
+  head
+    meta(charset='utf-8')
+    title Honest IxD - #{moduleName}
+    meta(name='description' content='')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='apple-touch-icon' href='apple-touch-icon.png')
+    script(src="https://use.fontawesome.com/0f9d1c7bb6.js")
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+
+    // build:css styles/vendor.css
+    // bower:css
+    // endbower
+    // endbuild
+
+    // build:css styles/main.css
+    link(rel='stylesheet' href='/styles/main.css')
+    // endbuild
+
+  body.module
+    include _honest-ixd-nav.jade
+    include _new-nav.jade
+    .content-area
+      .container
+        block content
+    include _new-footer.jade
+    // bower:js
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js')
+    script(src='/bower_components/angular/angular.js')
+    // endbower
+    
+    script(src="/scripts/modules/#{moduleSlug}.js")

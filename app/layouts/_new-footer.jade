@@ -1,0 +1,249 @@
+app-footer
+  section
+    footer
+      .container-footer.visible-xs
+        #footer-mobile.panel-group
+          .panel.footer-group.margin-none
+            .panel-heading.pad-none.position-relative
+              a.teal.font-size-lg.margin-none.block.pad-horizontal-lg.pad-vertical-md.border-teal-bottom.collapsed(data-ng-click="$ctrl.toggle('support')")
+                | Support
+                // 
+                i.fa.fa-plus.position-absolute.footer-collapse(data-ng-if="$ctrl.collapsed['support']")
+                // 
+                // 
+            .panel-collapse.collapse(data-uib-collapse="$ctrl.collapsed['support']", aria-expanded='false', aria-hidden='true', style='height: 0px;')
+              ul.hon-nav-list.blue-arrow-list.margin-bottom-none
+                li.footer-link
+                  a(href='/faq', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | FAQ
+                li.footer-link
+                  a(href='/about-us/feedback', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | Contact Us
+                li.footer-link
+                  a(href='/about-us/feedback', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | Feedback
+                li.footer-link
+                  a(href='/about-us/vendor-inquiry', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | Vendor Inquiry
+          .panel.footer-group.margin-none
+            .panel-heading.pad-none.position-relative
+              a.teal.font-size-lg.margin-none.block.pad-horizontal-lg.pad-vertical-md.border-teal-bottom.collapsed(data-ng-click="$ctrl.toggle('account')")
+                | Account
+                // 
+                i.fa.fa-plus.position-absolute.footer-collapse(data-ng-if="$ctrl.collapsed['account']")
+                // 
+                // 
+            .panel-collapse.collapse(data-uib-collapse="$ctrl.collapsed['account']", aria-expanded='false', aria-hidden='true', style='height: 0px;')
+              ul.hon-nav-list.blue-arrow-list.margin-bottom-none
+                li.footer-link
+                  a(href='/account', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | My Account
+                li.footer-link
+                  a(href='/account/orders', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | Order History
+                li.footer-link
+                  a(href='/invite', rel='nofollow')
+                    i.fa.fa-angle-right
+                    | Invites
+                li.footer-link
+                  a(href='/affiliateprogram')
+                    i.fa.fa-angle-right
+                    | Become an Affiliate
+          .panel.footer-group.margin-none
+            .panel-heading.pad-none.position-relative
+              a.teal.font-size-lg.margin-none.block.pad-horizontal-lg.pad-vertical-md.border-teal-bottom.collapsed(data-ng-click="$ctrl.toggle('about-us')")
+                | About Us
+                // 
+                i.fa.fa-plus.position-absolute.footer-collapse(data-ng-if="$ctrl.collapsed['about-us']")
+                // 
+                // 
+            .panel-collapse.collapse(data-uib-collapse="$ctrl.collapsed['about-us']", aria-expanded='false', aria-hidden='true', style='height: 0px;')
+              ul.hon-nav-list.blue-arrow-list.margin-bottom-none
+                li.footer-link
+                  a(href='http://blog.honest.com/')
+                    i.fa.fa-angle-right
+                    | Blog
+                li.footer-link
+                  a(href='/about-us/who-we-are')
+                    i.fa.fa-angle-right
+                    | Who We Are
+                li.footer-link
+                  a(href='/careers')
+                    i.fa.fa-angle-right
+                    | Careers
+                li.footer-link
+                  a(href='/about-us/press')
+                    i.fa.fa-angle-right
+                    | Press
+                li.footer-link
+                  a(href='/stores')
+                    i.fa.fa-angle-right
+                    | Retail Locator
+                li.footer-link
+                  a(href='/about-us/ca-transparency-act')
+                    i.fa.fa-angle-right
+                    | CA Transparency Act
+                li.footer-link
+                  a(href='https://app.appsflyer.com/id999183538?pid=www&c=general&af_sub1=402&af_sub2=organic&af_sub3=apple_footer')
+                    i.fa.fa-angle-right
+                    | Honest App for iPhone
+        a.iphone-app.iphone-app--xs(href='https://app.appsflyer.com/id999183538?pid=www&c=general&af_sub1=402&af_sub2=organic&af_sub3=apple_footer')
+          img.iphone-app__img(src='/h2_assets/images/app_store_badge_135x40.min.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.svg')
+        ul.white-footer-icons.over-auto.pad-md.margin-top-lg
+          li
+            a(href='http://www.facebook.com/TheHonestCompany', rel='external', target='_blank')
+              span.sprite-footer.footer-facebook
+          li
+            a(href='http://www.twitter.com/honest', rel='external', target='_blank')
+              span.sprite-footer.footer-twitter
+          li
+            a(href='http://pinterest.com/HonestCompany/', rel='external', target='_blank')
+              span.sprite-footer.footer-pinterest
+          li
+            a(href='http://instagram.com/Honest', rel='external', target='_blank')
+              span.sprite-footer.footer-instagram
+          li
+            a(href='https://plus.google.com/+Honest/posts', rel='external', target='_blank')
+              span.sprite-footer.footer-google_plus
+        .pad-md.teal.margin-bottom-md
+          i Call Us!  
+          a(href='tel:+18888628818')
+            strong 1.888.862.8818
+          br
+          span Mon - Fri 5AM - 5PM PST
+        .margin-bottom-xl.pad-md
+          a(href='http://www.honestbeauty.com')
+            img.img-responsive(src='/h2_assets/images/beauty/logo-footer.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+        .teal-link.pad-left-md.teal.font-size-xs ©2012-2015 The Honest Company, Inc. All Rights Reserved.
+        .pad-left-md.pad-bottom-md.font-size-xs
+          a(href='/privacy') Privacy Policy
+          span.teal /
+          a(href='/terms') Terms of Service
+      .container.container-footer.hidden-xs
+        #footer.row.white-link.over-auto
+          .col-lg-4.col-md-4.col-sm-3.col-xs-12.mobile-no-padding
+            .clearfix
+              .col-lg-6.col-md-6.col-sm-12.col-xs-12.mobile-no-padding
+                h5.font-size-lg Support
+                ul.hon-nav-list.blue-arrow-list
+                  li
+                    a(href='/faq', rel='nofollow') FAQ
+                  li
+                    a(href='/about-us/feedback', rel='nofollow') Contact Us
+                  li
+                    a(href='/about-us/feedback', rel='nofollow') Feedback
+                  li
+                    a(href='/about-us/vendor-inquiry', rel='nofollow') Vendor Inquiry
+              .col-lg-6.col-md-6.col-sm-12.col-xs-12.mobile-no-padding
+                h5.font-size-lg Account
+                ul.hon-nav-list.blue-arrow-list
+                  li
+                    a(href='/account', rel='nofollow') My Account
+                  li
+                    a(href='/account/orders', rel='nofollow') Order History
+                  li
+                    a(href='/invite', rel='nofollow') Invites
+                  li
+                    a(href='/affiliateprogram') Become an Affiliate
+            .col-lg-12.col-md-12.hidden-sm.hidden-xs.margin-top-lg
+              chat-with-us
+                // 
+                .chat-with-us.teal(data-ng-if='$ctrl.chatService.agentsAreAvailable', data-ng-class='$ctrl.decClass')
+                  span.chat-with-us__txt Chat with Us!
+                // 
+              span Call Us!  
+              span
+                strong 1.888.862.8818
+              br
+              span Mon - Fri 5AM - 5PM PST
+              .footer-beauty-callout
+                a(href='http://www.honestbeauty.com')
+                  img.img-responsive(src='/h2_assets/images/beauty/logo-footer.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+          .col-lg-2.col-sm-3.col-md-3.col-xs-12.mobile-no-padding
+            h5.font-size-lg About Us
+            ul.hon-nav-list.blue-arrow-list
+              li
+                a(href='http://blog.honest.com/') Blog
+              li
+                a(href='/about-us/who-we-are') Who We Are
+              li
+                a(href='/careers') Careers
+              li
+                a(href='/about-us/press') Press
+          .col-lg-2.col-md-3.col-sm-3.col-md-offset-0.col-xs-0.about-overflow.no-padding
+            ul.hon-nav-list
+              li
+                a(href='/stores') Retail Locator
+              li
+                a(href='/about-us/ca-transparency-act') CA Transparency Act
+              li
+                a.iphone-app(href='https://app.appsflyer.com/id999183538?pid=www&c=general&af_sub1=402&af_sub2=organic&af_sub3=apple_footer')
+                  span.iphone-app__txt Honest App for iPhone
+                  img.iphone-app__img(src='/h2_assets/images/app_store_badge_135x40.min.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.svg')
+          .col-lg-2.col-lg-offset-1.no-padding.col-sm-2.col-sm-offset-1.col-md-2.col-md-offset-0
+            h5.font-size-lg Get to Know Us
+            ul.hon-nav-list
+              li
+                a(href='http://www.facebook.com/TheHonestCompany', rel='external', target='_blank')
+                  span.sprite-footer.footer-facebook
+                  | Facebook
+              li
+                a(href='http://www.twitter.com/honest', rel='external', target='_blank')
+                  span.sprite-footer.footer-twitter
+                  | Twitter
+              li
+                a(href='http://pinterest.com/HonestCompany/', rel='external', target='_blank')
+                  span.sprite-footer.footer-pinterest
+                  | Pinterest
+              li
+                a(href='http://instagram.com/Honest', rel='external', target='_blank')
+                  span.sprite-footer.footer-instagram
+                  | Instagram
+              li
+                a(href='https://plus.google.com/+Honest/posts', rel='external', target='_blank')
+                  span.sprite-footer.footer-google_plus
+                  | Google+
+        .row.hidden-sm.margin-top-lg
+          .col-lg-7.col-md-7.col-sm-0.col-xs-0
+            .hidden-lg.hidden-md
+              span Call Us!
+              strong 1.888.862.8818
+              br
+              span Mon - Fri 5AM - 5PM PST
+            .teal-link.margin-top-md.teal.font-size-sm.pad-left-lg ©2012-2015 The Honest Company, Inc. All Rights Reserved.
+            .pad-left-lg.font-size-sm
+              a(href='/privacy', rel='nofollow') Privacy Policy
+              span.teal /
+              a(href='/terms', rel='nofollow') Terms of Service
+          .col-lg-5.col-md-5.col-sm-0.col-xs-0.no-padding
+            a.sprite-footer.footer-bcorp.pull-left.margin-right-xl(href='http://www.bcorporation.net/thehonestcompany', target='_blank')
+            a.sprite-footer.footer-green_america.pull-left.margin-right-lg(href='http://www.greenamerica.org/greenbusiness/certification.cfm', target='_blank')
+            a.footer-bbb.pull-left(href='https://www.bbb.org/losangelessiliconvalley/business-reviews/internet-shopping/the-honest-company-in-santa-monica-ca-100114031#sealclick', target='_blank')
+              img(alt='Click for the BBB Business Review of this Internet Shopping in Santa Monica CA', src='https://seal-sanjose.bbb.org/seals/blue-seal-200-42-whitetxt-thehonestcompanyinc-100114031.png')
+        .row
+          .col-lg-12.col-md-12.col-sm-12.col-xs-12.hidden-lg.hidden-md.over-auto.pad-bottom-md.no-pad-xs.mobile-no-padding
+            .col-lg-12.col-md-12.col-sm-5.col-xs-12.mobile-no-padding.over-auto
+              .pad-md.teal.margin-bottom-md
+                span Call Us!  
+                strong 1.888.862.8818
+                br
+                span Mon - Fri 5AM - 5PM PST
+              .footer-beauty-callout.pad-md
+                a(href='http://www.honestbeauty.com')
+                  img.img-responsive(src='/h2_assets/images/beauty/logo-footer.0c3b3ed8825a5f1e9a78b39752c01b0100f5715c.png')
+              .teal-link.pad-md.teal ©2012-2015 The Honest Company, Inc. All Rights Reserved.
+              .pad-left-md
+                a(href='/privacy') Privacy Policy
+                span.teal   /  
+                a(href='/terms') Terms of Service
+            .col-sm-7.visible-sm(style='padding-top: 85px;')
+              a.sprite-footer.footer-bcorp.pull-left.margin-right-xl(href='http://www.bcorporation.net/thehonestcompany', target='_blank')
+              a.sprite-footer.footer-green_america.pull-left.margin-right-lg(href='http://www.greenamerica.org/greenbusiness/certification.cfm', target='_blank')
+              a.footer-bbb.pull-left(href='https://www.bbb.org/losangelessiliconvalley/business-reviews/internet-shopping/the-honest-company-in-santa-monica-ca-100114031#sealclick', target='_blank')
+                img(alt='Click for the BBB Business Review of this Internet Shopping in Santa Monica CA', src='https://seal-sanjose.bbb.org/seals/blue-seal-200-42-whitetxt-thehonestcompanyinc-100114031.png')

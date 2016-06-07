@@ -1,0 +1,15 @@
+extends ../layouts/module
+
+block vars
+  - var moduleSlug = 'select-option'
+  - var moduleName = 'Select Option'
+  - var moduleType = 'Desktop / Mobile'
+
+block content
+  .select-option.module(data-ng-app="selectOption" data-ng-controller="selectOptionCtrl as so")
+    .row.row-classic
+      .col-xs-12.col-sm-4.col-sm-offset-4
+        .icon(data-ng-click="so.selected = !so.selected" data-ng-class="{'selected':so.selected}")
+          svg(width="100%")
+            use(xlink:href="../images/2-tubs.svg#two-tubs")
+        

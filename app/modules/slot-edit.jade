@@ -1,0 +1,38 @@
+extends ../layouts/module
+
+block vars
+  - var moduleSlug = 'slot-edit'
+  - var moduleName = 'Slot Edit'
+  - var moduleType = 'Desktop / Mobile'
+
+block content
+  .slot-edit.module(data-ng-app="slotEdit" data-ng-controller="slotEditCtrl as se")
+    .container
+      .row
+        .col-xs-12
+          .prints
+            h1.prints__title Selected Prints
+            ul.prints__list
+              .row
+                .right-ui
+                  div(data-ng-if="!se.edit" data-ng-click="se.edit = !se.edit") Edit
+                  div(data-ng-if="se.edit" data-ng-click="se.edit = !se.edit") Done!
+                .col-xs-4.col-sm-2(data-ng-repeat="item in se.selectedItems | orderBy: 'id'")
+                  li.prints__item(data-ng-init="mainItem = ( se.availableItems | filter:{id:item.id}:true)[0]; mainItem.selected = true" data-ng-class="{'prints__item--empty':!item.id}")
+                    img.prints__image(data-ng-if="item.id" data-ng-src="/images/prints/{{(se.availableItems | filter:{id:item.id}:true)[0].image_url}}" data-ng-class="{'edit-animation': se.edit}")
+                    .prints__image(data-ng-if="!item.id")
+                    h2.prints__name(data-ng-if="item.id") {{ (se.availableItems | filter:{id:item.id})[0].name }}
+                    h2.prints__name(data-ng-if="!item.id") No Print Selected
+      .row
+        .col-xs-12
+          .prints
+            h1.prints__title All Available Prints
+            ul.prints__list
+              .row
+                .col-xs-2.col-sm-1(data-ng-repeat="item in se.availableItems" data-ng-click="se.addItem(item)")
+                  li.prints__item(data-ng-class="{'prints__item--editable':se.edit}")
+                    img.prints__image(data-ng-class="{'prints__image--selected':item.selected}" data-ng-src="/images/prints/{{item.image_url}}")
+                    h3.prints__name.prints__name--available(data-ng-class="{'prints__name--selected':item.selected}") {{item.name}}
+                
+                
+                

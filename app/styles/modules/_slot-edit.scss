@@ -1,0 +1,56 @@
+.slot-edit {
+  .prints {
+    transition: all 0.3 ease-in-out;
+    &__list {
+      margin: 20px 0 0 0;
+      padding: 0;
+    }
+    &__item {
+      list-style-type: none;
+      border: 2px solid transparent;
+      transition: all 0.3s ease-in-out;
+      &--empty {
+        cursor: default;
+        .prints__image {
+          border: 2px dotted $grey-3;
+          border-radius: 50%;
+          background: white;
+          width: 100%;
+          height: auto;
+          padding-top: 100%;
+        }
+        .prints__name {
+          font-size: 1.6rem;
+          color: $grey-3;
+        }
+      }
+      &--editable {
+        cursor: pointer;
+      }
+    }
+    &__image {
+      border-radius: 50%;
+      width: 100%;
+      height: auto;
+      border: 2px solid transparent;
+      transition: all 0.2s ease-in-out;
+      &--selected {
+        border: 2px solid $teal1;
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+      }
+    }
+    &__name {
+      text-align: center;
+      font-size: 1.8rem;
+      color: $black;
+      transition: all 0.2s ease-in-out;
+      &--available {
+        font-size: 1.2rem;
+      }
+      &--selected {
+        color: $teal;
+        font-weight: bold;
+      }
+    }
+  }
+}

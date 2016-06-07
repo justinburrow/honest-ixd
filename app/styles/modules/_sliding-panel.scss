@@ -1,0 +1,38 @@
+.sliding-panel {
+  .fixed {
+    position: fixed;
+    width: 100%;
+    background: rgba(255,255,255,.8);
+    z-index: 200;
+    margin: 0;
+    padding: 10px 0;
+    top: 50px;
+  }
+  .content {
+    margin-top: 50px;
+  }
+  .slide-panel {
+    width: 100vw;
+    min-height: 100vh;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    z-index: 5000;
+    transform: translateX(100vw);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(.31, .99, .9, .95);
+    &.open {
+      width: 100%;
+      transform: translateX(0);
+    }
+    &__close-icon {
+      font-size: 2rem;
+      position: absolute;
+      z-index: 100;
+      top: 10px;
+      right: 15px;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.edit-animation {
+  animation: edit-shake .4s infinite ease-in-out;
+}
+
+@keyframes edit-shake {
+  0% { transform: rotate(1.2deg); }
+  20% { transform: rotate(-0.5deg); }
+  70% { transform: rotate(-1.2deg); }
+  80% { transform: rotate(-0.5deg); }
+  100% { transform: rotate(1.2deg); }
+}
