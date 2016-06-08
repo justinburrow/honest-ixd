@@ -7,4 +7,17 @@ block vars
 
 block content
   .product-flag.module(data-ng-app="productFlag" data-ng-controller="productFlagCtrl as pf")
-        
+    .row.row-classic
+      .col-xs-12.col-sm-4.col-sm-offset-4
+        .product
+          .product__image
+            img(src="../images/baby-powder.jpg")
+            .product__flag(data-ng-class="{'product__flag--visible':pf.quantity >= 1}")
+              | {{ pf.quantity }} in cart
+              
+          .product__quantity
+            button.product__button(data-ng-click="pf.quantity = pf.quantity - 1")
+              i.fa.fa-minus
+            button.product__button(data-ng-click="pf.quantity = pf.quantity + 1")
+              i.fa.fa-plus
+              
