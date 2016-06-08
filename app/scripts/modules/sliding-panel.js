@@ -7,7 +7,7 @@ app.controller('slidingPanelCtrl', function($window) {
   var vm = this;
   var resizeTimer;
   vm.edit = false;
-  
+
   /* Shut down all CSS transitions on resize- turn back on 250ms when resize is over */
   angular.element($window).resize(function() {
     var b = angular.element('body');
@@ -17,5 +17,5 @@ app.controller('slidingPanelCtrl', function($window) {
       b.removeClass('no-transition');
     }, 250);
   });
-  
+
 });
