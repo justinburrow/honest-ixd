@@ -1,0 +1,24 @@
+extends ../layouts/module
+
+block vars
+  - var moduleSlug = 'mobile-modal'
+  - var moduleName = 'Mobile Modal'
+  - var moduleType = 'Mobile'
+
+block content
+  .mobile-modal.module(data-ng-app="mobileModal" data-ng-controller="mobileModalCtrl as mm")
+  
+    .visible-xs
+      .row.row-classic.fixed
+        .col-xs-12
+        
+          .overlay
+            .modal-window
+              i.modal-window__close.fa.fa-close(data-ng-click="mm.modalClose()")
+              .modal-window__content
+                | Here is my content
+          
+          .content
+            a(href="#" data-ng-click="mm.modalOpen()") Launch the modal
+            
+  include ../layouts/_no-dt.jade

@@ -1,0 +1,46 @@
+.mobile-modal {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease;
+    .modal-window {
+      opacity: 0;
+      background: white;
+      position: absolute;
+      top: 10%;
+      left: 20px;
+      right: 20px;
+      width: calc(100% - 40px);
+      height: 100px;
+      &__close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+      &__content {
+        margin: 20px;
+        opacity: 0;
+      }
+    }
+    &--shown {
+      opacity: 1;
+      visibility: visible;
+      .modal-window {
+        opacity: 1;
+        transition: opacity 0.3s ease 0.2s;
+        &__content {
+          opacity: 1;
+          transition: opacity 0.5s ease 0.5s;
+        }
+      }
+    }
+  }
+}
