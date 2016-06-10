@@ -14,6 +14,10 @@
   transition: none !important;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .page-title {
   margin-bottom: 50px;
   padding-bottom: 10px;
