@@ -7,9 +7,9 @@ app.controller('mobileModalCtrl', function() {
   
   vm.modalOpen = function() {
     angular.element('.overlay').addClass('overlay--shown');
-  }
-  
+  };
+
   vm.modalClose = function() {
     angular.element('.overlay').removeClass('overlay--shown');
-  }
+  };
 });

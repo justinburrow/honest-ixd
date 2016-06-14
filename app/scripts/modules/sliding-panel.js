@@ -7,7 +7,7 @@ app.controller('slidingPanelCtrl', function($window) {
   var vm = this;
   var resizeTimer;
   vm.edit = false;
-  
+
   vm.openClosePanel = function() {
     vm.edit = !vm.edit;
     angular.element('body').toggleClass('no-scroll');

@@ -5,9 +5,9 @@ var app = angular.module('textUpdate', ['ngAnimate']);
 
 app.controller('textUpdateCtrl', function($scope) {
   var vm = this;
-  
+
   vm.testValue = 12.99;
-  
+
   vm.updateValue = function() {
     vm.updating = true;
     setTimeout( function() {
@@ -17,5 +17,5 @@ app.controller('textUpdateCtrl', function($scope) {
       $scope.$apply();
     }, 200);
   };
-  
+
 });
