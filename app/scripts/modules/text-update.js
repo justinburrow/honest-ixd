@@ -16,6 +16,6 @@ app.controller('textUpdateCtrl', function($scope) {
       vm.updating = false;
       $scope.$apply();
     }, 200);
-    
   };
+  
 });
