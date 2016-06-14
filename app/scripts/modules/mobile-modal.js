@@ -4,7 +4,7 @@ var app = angular.module('mobileModal', []);
 
 app.controller('mobileModalCtrl', function() {
   var vm = this;
-  
+
   vm.modalOpen = function() {
     angular.element('.overlay').addClass('overlay--shown');
   };
