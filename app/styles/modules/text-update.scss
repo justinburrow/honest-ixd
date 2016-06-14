@@ -1,0 +1,9 @@
+.text-update {
+  h2 {
+    opacity: 1;
+    transition: opacity .2s ease;
+    &.fade-out {
+      opacity: 0;
+    }
+  }
+}

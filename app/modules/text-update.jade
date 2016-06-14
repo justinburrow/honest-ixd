@@ -1,0 +1,16 @@
+extends ../layouts/module
+
+block vars
+  - var moduleSlug = 'text-update'
+  - var moduleName = 'Text Update'
+  - var moduleType = 'Desktop / Mobile'
+
+block content
+  .text-update.module(data-ng-app="textUpdate" data-ng-controller="textUpdateCtrl as tu")
+    .container
+      .row.row-classic
+        .col-xs-12
+          h2.value(data-ng-class="{'fade-out':tu.updating}") {{ tu.testValue | currency }}
+          form
+            input(type="text" placeholder="Enter new value" data-ng-model="tu.updatedValue")
+            button(data-ng-disabled="!tu.updatedValue || tu.updatedValue == ''" data-ng-click="tu.updateValue()") Update
